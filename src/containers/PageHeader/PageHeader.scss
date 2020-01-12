@@ -1,0 +1,41 @@
+.page-header {
+  width: 100%;
+  min-height: 80px;
+
+  display: flex;
+  align-items: center;
+
+  &__link:hover .page-header__title {
+    color: #1890ff;
+  }
+
+  &__title,
+  &__status {
+    margin: 0;
+  }
+
+  &__title {
+    transition: color 0.2s;
+  }
+
+  &__user-wrapper {
+    margin-left: auto;
+  }
+
+  &__status {
+    color: #a9a9a9;
+  }
+
+  &__username {
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.65);
+  }
+
+  &__user-icon {
+    margin-right: 6px;
+  }
+
+  &__button {
+    margin-left: 24px;
+  }
+}
