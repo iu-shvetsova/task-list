@@ -36,6 +36,7 @@ async function editCardService(id, cardData) {
   const body = new FormData();
   body.append("text", cardData.text);
   body.append("status", cardData.status ? "10" : "0");
+  body.append("shit", "lal");
   body.append("token", getCookie("token"));
 
   const requestOptions = {

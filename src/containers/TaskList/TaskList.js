@@ -69,6 +69,8 @@ class TaskList extends React.Component {
       );
     }
 
+    console.log("suka = ", getCookie("token"));
+
     return (
       <div className="task-list">
         <SortList
@@ -82,7 +84,7 @@ class TaskList extends React.Component {
             <li key={index} className="task-list__item">
               <Task
                 taskData={item}
-                editable={getCookie("token") !== ""}
+                editable={getCookie("token")}
                 onEdit={this.handleEdit}
               />
             </li>
