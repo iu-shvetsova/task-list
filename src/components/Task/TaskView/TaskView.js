@@ -2,8 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./TaskView.scss";
 import { Button, Icon } from "antd";
+import { getCookie } from "./../../../helpers/cookie";
 
-const TaskView = ({ username, email, text, status, onEditClick, editable }) => {
+const TaskView = ({
+  id,
+  username,
+  email,
+  text,
+  status,
+  onEditClick,
+  editable
+}) => {
+  const editedByAdmin = JSON.parse(getCookie("editedIds")).some(
+    it => parseInt(it) === id
+  );
   return (
     <div className="task-view">
       {editable && (
@@ -30,6 +42,12 @@ const TaskView = ({ username, email, text, status, onEditClick, editable }) => {
       >
         {status ? "Завершено" : "Не выполнено"}
       </p>
+
+      {editedByAdmin && (
+        <small className="task-view__mark">
+          Отредактировано администратором
+        </small>
+      )}
     </div>
   );
 };

@@ -1,8 +1,9 @@
 import { baseURL, endpoints } from "../../../constants/api.constants";
 import { cardConstants } from "../cards.constants";
 import { message } from "antd";
-import { getCookie } from "../../../helpers/cookie";
+import { getCookie, setCookie } from "../../../helpers/cookie";
 import { logout } from "../../user/actions";
+import { store } from "./../../store";
 
 export const editCard = (id, cardData) => {
   return dispatch => {
@@ -36,8 +37,18 @@ async function editCardService(id, cardData) {
   const body = new FormData();
   body.append("text", cardData.text);
   body.append("status", cardData.status ? "10" : "0");
-  body.append("shit", "lal");
   body.append("token", getCookie("token"));
+
+  const state = store.getState();
+  const { cards } = state.cardsReducer;
+
+  const oldCardData = cards.filter(it => it["id"] === id)[0];
+
+  if (oldCardData["text"] !== cardData["text"]) {
+    const editedIds = JSON.parse(getCookie("editedIds") || "[]");
+    editedIds.push(id);
+    setCookie("editedIds", JSON.stringify(editedIds));
+  }
 
   const requestOptions = {
     method: "POST",

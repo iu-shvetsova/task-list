@@ -69,8 +69,6 @@ class TaskList extends React.Component {
       );
     }
 
-    console.log("suka = ", getCookie("token"));
-
     return (
       <div className="task-list">
         <SortList
